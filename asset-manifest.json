@@ -1,13 +1,13 @@
 {
-  "main.js": "/movie-search/static/js/main.e11d9e22.chunk.js",
-  "main.js.map": "/movie-search/static/js/main.e11d9e22.chunk.js.map",
-  "runtime~main.js": "/movie-search/static/js/runtime~main.5125b6b9.js",
-  "runtime~main.js.map": "/movie-search/static/js/runtime~main.5125b6b9.js.map",
-  "static/css/2.2cd4e56f.chunk.css": "/movie-search/static/css/2.2cd4e56f.chunk.css",
-  "static/js/2.1c8d0edb.chunk.js": "/movie-search/static/js/2.1c8d0edb.chunk.js",
-  "static/js/2.1c8d0edb.chunk.js.map": "/movie-search/static/js/2.1c8d0edb.chunk.js.map",
-  "index.html": "/movie-search/index.html",
-  "precache-manifest.b7cf3acacb4d9bbc182891cd89f4ed57.js": "/movie-search/precache-manifest.b7cf3acacb4d9bbc182891cd89f4ed57.js",
-  "service-worker.js": "/movie-search/service-worker.js",
-  "static/css/2.2cd4e56f.chunk.css.map": "/movie-search/static/css/2.2cd4e56f.chunk.css.map"
+  "main.js": "/BestMovie/static/js/main.e11d9e22.chunk.js",
+  "main.js.map": "/BestMovie/static/js/main.e11d9e22.chunk.js.map",
+  "runtime~main.js": "/BestMovie/static/js/runtime~main.a3740fbc.js",
+  "runtime~main.js.map": "/BestMovie/static/js/runtime~main.a3740fbc.js.map",
+  "static/css/2.2cd4e56f.chunk.css": "/BestMovie/static/css/2.2cd4e56f.chunk.css",
+  "static/js/2.1c8d0edb.chunk.js": "/BestMovie/static/js/2.1c8d0edb.chunk.js",
+  "static/js/2.1c8d0edb.chunk.js.map": "/BestMovie/static/js/2.1c8d0edb.chunk.js.map",
+  "index.html": "/BestMovie/index.html",
+  "precache-manifest.a3dfc91e60f14d6290de3e2b4e4ae19a.js": "/BestMovie/precache-manifest.a3dfc91e60f14d6290de3e2b4e4ae19a.js",
+  "service-worker.js": "/BestMovie/service-worker.js",
+  "static/css/2.2cd4e56f.chunk.css.map": "/BestMovie/static/css/2.2cd4e56f.chunk.css.map"
 }
