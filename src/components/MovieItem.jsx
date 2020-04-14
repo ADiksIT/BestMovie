@@ -1,4 +1,6 @@
 import React from "react";
+import { API_URL_IMAGE } from "../utils/api";
+//import nullPoster from "../../public/img/undefined.jpg";
 class MovieItem extends React.Component {
     constructor() {
         super()
@@ -7,6 +9,13 @@ class MovieItem extends React.Component {
           willWatch : false
         };
     }
+
+    getMovieImage = (movie) => {
+        const moviePoster =  movie.poster_path ? API_URL_IMAGE + movie.poster_path : "https://s3-eu-west-1.amazonaws.com/trailers.app/trailers/logos/000/000/197/index/no-poster.jpg?1484574633";
+        return moviePoster; 
+    };
+
+    
 
     render() {
         const { 
@@ -20,8 +29,7 @@ class MovieItem extends React.Component {
         <div className="card">
             <img
                 className="card-img-top"
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path ||
-                movie.poster_path}`}
+                src={this.getMovieImage(movie)}
                 alt=""
             />
             <div className="card-body">

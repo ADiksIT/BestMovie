@@ -3,30 +3,42 @@ import React from "react";
 import MovieItem from "../components/MovieItem";
 import { API_URL, API_KEY} from "../utils/api";
 import MovieTabs from "../components/MovieTabs";
-
+import PageSwitching from "../components/PageSwitching";
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
+      page : 1,
+      totalPages : '',
       movies : [],
       moviesWillWatch : [],
       sort_by : "revenue.desc"
     };
   }
 
-  componentDidMount() {
-    fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by${this.state.sort_by}`)
-      .then((response) => {
-        return response.json();   
-      })
-      .then((data) => {
-        this.setState({
-          movies : data.results
-        });
-      })
+  getMoviesForAPI = () => {
+    fetch(`${API_URL}/discover/movie?api_key=${API_KEY}&sort_by=${this.state.sort_by}&page=${this.state.page}`)
+    .then((response) => {
+      return response.json();   
+    })
+    .then((data) => {
+      this.setState({
+        //page : data.page,
+        totalPages : data.total_pages,
+        movies : data.results
+      });
+    });
+  };
 
-      
+  componentDidMount() {
+    this.getMoviesForAPI();    
+  };
+
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.sort_by !== this.state.sort_by) {
+      this.getMoviesForAPI();    
+    }
   };
 
   removeMovie = movie => {
@@ -61,7 +73,36 @@ class App extends React.Component {
     });
   };
 
-
+  nextPage = () => {
+    this.setState({
+      page : this.state.page + 1
+    });
+    setTimeout(() => {
+        this.getMoviesForAPI();
+    }, 0);
+    
+  }
+  
+  prevPage = () => {
+    if (this.state.page !== 1) {
+      this.setState({
+        page : this.state.page - 1
+      });
+      setTimeout(() => {
+        this.getMoviesForAPI();
+      }, 0);
+      
+    }
+  }
+  
+  resettingThePageCounter = () =>{
+    this.setState({
+      page : this.setState.page = 1
+    });
+    setTimeout(() => {
+    this.getMoviesForAPI();
+    }, 0);
+  }
 
 
   render() {
@@ -69,17 +110,24 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12 mb-4">
-          <MovieTabs 
-            sort_by={this.state.sort_by} 
-            updateSortBy={this.updateSortBy}
-          />
+          <div className="col-8 mb-4 mt-4">
+              <MovieTabs 
+                sort_by={this.state.sort_by} 
+                updateSortBy={this.updateSortBy}
+                resettingThePageCounter={this.resettingThePageCounter}
+              />
           </div>
-          <div className="col-8">
+          <div className="col-10">
             <div className="row">
+              <PageSwitching 
+                page={this.state.page}
+                totalPages={this.state.totalPages}
+                nextPage={this.nextPage}
+                prevPage={this.prevPage}
+              />
               {this.state.movies.map((movie) => {
                 return (
-                <div className="col-sm-9 col-md-6 col-lg-4 mb-4">
+                <div className="col-sm-6 col-md-6 col-lg-4 mb-4">
                    <MovieItem 
                     movie={movie}
                     removeMovie={this.removeMovie} 
@@ -90,8 +138,15 @@ class App extends React.Component {
                 );
               })}
             </div>
+            <PageSwitching 
+                page={this.state.page}
+                totalPages={this.state.totalPages}
+                nextPage={this.nextPage}
+                prevPage={this.prevPage}
+              />
           </div>
-          <div className="col-4">
+         
+          <div className="col-2">
             <h4>Will Watch: {this.state.moviesWillWatch.length} movies</h4>
             <ul className="list-group">
               {this.state.moviesWillWatch.map(movie => (
